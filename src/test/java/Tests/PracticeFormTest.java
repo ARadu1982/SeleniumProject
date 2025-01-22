@@ -1,9 +1,6 @@
 package Tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
@@ -18,10 +15,12 @@ public class PracticeFormTest {
 
         // Deschidem un browser de chrome
         driver = new ChromeDriver();
+
         //accesam o pagina web
         driver.get("https://demoqa.com/");
         //facem browserul in modul maximize
         driver.manage().window().maximize();
+        
 
         //facem un scroll
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -54,19 +53,35 @@ public class PracticeFormTest {
         File file = new File("src/test/resources/Capture1.PNG");
         pictureElement.sendKeys(file.getAbsolutePath());
 
-        WebElement maleElement = driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
-        WebElement femaleElement = driver.findElement(By.xpath("//label[@for='gender-radio-2']"));
-        WebElement otherElement = driver.findElement(By.xpath("//label[@for='gender-radio-3']"));
+        WebElement MaleElement = driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
+        WebElement FemaleElement = driver.findElement(By.xpath("//label[@for='gender-radio-2']"));
+        WebElement OtherElement = driver.findElement(By.xpath("//label[@for='gender-radio-3']"));
 
-        String genderValue = "Female";
+        String Gender = "Female";
 
-        if (genderValue.equals("Male")){
-            maleElement.click();
-        } else if (genderValue.equals("Female")){
-            femaleElement.click();
-        } else if (genderValue.equals("Other")){
-            otherElement.click();
+        if (MaleElement.getText().equals(Gender)){
+            MaleElement.click();
+        } else if (FemaleElement.getText().equals(Gender)){
+            FemaleElement.click();
+        } else if (OtherElement.getText().equals("Other")){
+            OtherElement.click();
         }
+
+        WebElement SubjectElement = driver.findElement((By.id("subjectsInput")));
+        String SubjectValues = "Social Studies";
+        SubjectElement.sendKeys(SubjectValues);
+        SubjectElement.sendKeys(Keys.ENTER);
+
+        WebElement StateElement = driver.findElement(By.id("react-select-3-input"));
+        js.executeScript("arguments[0].click();",StateElement);
+        StateElement.sendKeys("NCR");
+        StateElement.sendKeys(Keys.ENTER);
+
+        WebElement CityElement = driver.findElement(By.id("react-select-4-input"));
+        js.executeScript("arguments[0].click();",CityElement);
+        CityElement.sendKeys("Delhi");
+        CityElement.sendKeys(Keys.ENTER);
+
 
     }
 }
