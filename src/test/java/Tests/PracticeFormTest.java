@@ -18,6 +18,7 @@ public class PracticeFormTest {
 
         //accesam o pagina web
         driver.get("https://demoqa.com/");
+
         //facem browserul in modul maximize
         driver.manage().window().maximize();
         
@@ -81,7 +82,6 @@ public class PracticeFormTest {
         js.executeScript("arguments[0].click();",CityElement);
         CityElement.sendKeys("Delhi");
         CityElement.sendKeys(Keys.ENTER);
-
 
     }
 }
