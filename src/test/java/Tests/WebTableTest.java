@@ -5,7 +5,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class WebTableTest {
 
@@ -15,7 +19,7 @@ public class WebTableTest {
     public void automationMethod(){
 
         // Deschidem un browser de chrome
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         //accesam o pagina web
         driver.get("https://demoqa.com/");
         //facem browserul in modul maximize
@@ -31,6 +35,9 @@ public class WebTableTest {
 
         WebElement WebTablefield = driver.findElement((By.xpath("//span[text()='Web Tables']")));
         WebTablefield.click();
+
+        List<WebElement> tabelElements = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -even' or @class='rt-tr -odd']"));
+        Integer actualTableSize = tabelElements.size();
 
         WebElement AddButtonfield = driver.findElement(By.id("addNewRecordButton"));
         AddButtonfield.click();
@@ -61,6 +68,21 @@ public class WebTableTest {
 
         WebElement Submitbutton = driver.findElement(By.id("submit"));
         Submitbutton.click();
+
+        List<WebElement> expectedTabelElements = driver.findElements(By.xpath("//div[@class='rt-tbody']/div/div[@class='rt-tr -even' or @class='rt-tr -odd']"));
+
+        Integer expectedTableSize = actualTableSize+1;
+
+        Assert.assertEquals(expectedTabelElements.size(),expectedTableSize);
+
+        String actualTableValue = expectedTabelElements.get(3).getText();
+
+        Assert.assertTrue(actualTableValue.contains(firstNameValue));
+        Assert.assertTrue(actualTableValue.contains(lastNameValue));
+        Assert.assertTrue(actualTableValue.contains(userEmailValue));
+        Assert.assertTrue(actualTableValue.contains(ageValue));
+        Assert.assertTrue(actualTableValue.contains(salaryValue));
+        Assert.assertTrue(actualTableValue.contains(departmentValue));
 
     }
 }
