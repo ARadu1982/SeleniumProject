@@ -29,6 +29,7 @@ public class TestLetCodeForm {
         lastNameElement.sendKeys("Radu");
 
         WebElement emailElement = driver.findElement(By.xpath("//input[@id='email']"));
+        emailElement.clear();
         emailElement.sendKeys("ar@email.com");
 
         WebElement countryCodeElement = driver.findElement(By.xpath("//select/option[@data-countrycode='RO']"));
@@ -40,8 +41,27 @@ public class TestLetCodeForm {
         WebElement phoneElement = driver.findElement(By.xpath("//input[@id='Phno']"));
         phoneElement.sendKeys("123456789");
 
+        WebElement adressLine1Element = driver.findElement(By.xpath("//input[@id='Addl1']"));
+        adressLine1Element.sendKeys("address line 1");
 
+        WebElement adressLine2Element = driver.findElement(By.xpath("//input[@id='Addl2']"));
+        adressLine2Element.sendKeys("address line 2");
 
-        driver.close();
+        WebElement stateElement = driver.findElement(By.xpath("//input[@id='state']"));
+        stateElement.sendKeys("Ilfov");
+
+        WebElement dateElement = driver.findElement(By.xpath("//input[@type='date']"));
+        dateElement.sendKeys("1990-11-05");
+
+        WebElement genderElement = driver.findElement(By.xpath("//input[@type='radio' and @id='male']"));
+        genderElement.click();
+
+        WebElement termsAndConditionElement = driver.findElement(By.xpath("//input[@type='checkbox']"));
+        termsAndConditionElement.click();
+
+        WebElement submitElement = driver.findElement(By.xpath("//input[@type='submit']"));
+        submitElement.click();
+
+//        driver.close();
     }
 }
