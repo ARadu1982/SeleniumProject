@@ -3,6 +3,8 @@ package Tests;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -86,6 +88,7 @@ public class PracticeFormTest {
 
         WebElement submitElement = driver.findElement(By.id("submit"));
         js.executeScript("arguments[0].click();",submitElement);
+
 
     }
 }
