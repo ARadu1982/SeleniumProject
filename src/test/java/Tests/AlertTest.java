@@ -1,4 +1,6 @@
 package Tests;
+import HelperMethods.AlertMethods;
+import HelperMethods.ElementsMethods;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,7 +16,11 @@ public class AlertTest {
 
         public WebDriver driver;
 
-        @Test
+        public ElementsMethods elementsMethods;
+
+        public AlertMethods alertMethods;
+
+    @Test
         public void alertTestMethod() {
 
             // Deschidem un browser de chrome
@@ -28,50 +34,49 @@ public class AlertTest {
             //facem browserul in modul maximize
             driver.manage().window().maximize();
 
+            elementsMethods = new ElementsMethods(driver);
+            alertMethods = new AlertMethods(driver);
+
             //facem un scroll
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 //            js.executeScript("window.scrollBy(0, 400)");
 
             WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-            alertFrameWindowElement.click();
+            elementsMethods.clickOnElements(alertFrameWindowElement);
 
             WebElement alertElement = driver.findElement((By.xpath("//span[text()='Alerts']")));
-            alertElement.click();
+            elementsMethods.clickOnElements(alertElement);
 
             js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
             // prima alerta
             WebElement alertOkElement = driver.findElement(By.id("alertButton"));
-            alertOkElement.click();
+            elementsMethods.clickOnElements(alertOkElement);
 
-            Alert alertOk = driver.switchTo().alert();
-             // mutam focusul pe alerta
-            alertOk.accept();
+            alertMethods.interactWithAlerts();
 
             js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
 
             // a doua alerta
             WebElement alertDelayElement = driver.findElement(By.id("timerAlertButton"));
-            alertDelayElement.click();
+            elementsMethods.clickOnElements(alertDelayElement);
 
-            // definim un wait explicit ca sa astepte dupa alerta
-            WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.alertIsPresent());
+//            // definim un wait explicit ca sa astepte dupa alerta
+//            WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+//            wait.until(ExpectedConditions.alertIsPresent());
 
-            Alert alertDelay = driver.switchTo().alert();
-            alertDelay.accept();
+            alertMethods.interactWithDelayAlert();
 
             js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
 
             // a treia alerta
             WebElement alertConfirmElement = driver.findElement(By.id("confirmButton"));
-            alertConfirmElement.click();
+            elementsMethods.clickOnElements(alertConfirmElement);
 
-            Alert alertConfirmation = driver.switchTo().alert();
-            alertConfirmation.dismiss();
+            alertMethods.interactWithDismissAlert();
 
             String expectedMessage = "You selected Cancel";
             String actualMessage = driver.findElement(By.id("confirmResult")).getText();
@@ -83,11 +88,9 @@ public class AlertTest {
 
             // a patra alerta
             WebElement alertPromptElement = driver.findElement(By.id("promtButton"));
-            alertPromptElement.click();
+            elementsMethods.clickOnElements(alertPromptElement);
 
-            Alert alertPrompt = driver.switchTo().alert();
-            alertPrompt.sendKeys("Some text!");
-            alertPrompt.accept();
+            alertMethods.interactWithAlertPrompt("Some text!");
 
             String expectedPromptMessage = "You entered Some text!";
             String actualPromptMessage = driver.findElement(By.id("promptResult")).getText();
