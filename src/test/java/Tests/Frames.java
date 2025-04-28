@@ -1,5 +1,8 @@
 package Tests;
 
+import HelperMethods.ElementsMethods;
+import HelperMethods.FramesMethods;
+import HelperMethods.JavascripMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,11 +15,16 @@ import java.time.Duration;
 public class Frames {
 
     public WebDriver driver;
+    public JavascripMethods javascriptMethods;
+    public ElementsMethods elementsMethods;
+    public FramesMethods frameMethods;
 
     @Test
     public void framesMethod() {
+
         // Deschidem un browser de chrome
         driver = new FirefoxDriver();
+
         //accesam o pagina web
         driver.get("https://demoqa.com/");
 
@@ -26,33 +34,34 @@ public class Frames {
         //facem browserul in modul maximize
         driver.manage().window().maximize();
 
+        elementsMethods = new ElementsMethods(driver);
+        frameMethods = new FramesMethods(driver);
+
         //facem un scroll
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
-//            js.executeScript("window.scrollBy(0, 400)");
+        javascriptMethods = new JavascripMethods(driver);
+        javascriptMethods.scroll(0,400);
 
         WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        alertFrameWindowElement.click();
+        elementsMethods.clickOnElements(alertFrameWindowElement);
 
         WebElement frameElement = driver.findElement((By.xpath("//span[text()='Frames']")));
-        frameElement.click();
+        elementsMethods.clickOnElements(frameElement);
 
         WebElement frame1Element = driver.findElement(By.id("frame1"));
-        driver.switchTo().frame(frame1Element);
+        frameMethods.switchToFrame(frame1Element);
 
         WebElement sampleHeadingFrameElement = driver.findElement((By.id("sampleHeading")));
         System.out.println("Textul din frame este: "+sampleHeadingFrameElement.getText());
 
         // ne intoarcem cu focusul din frame pe pagina principala
-        driver.switchTo().defaultContent();
+        frameMethods.switchToDefaultContent();
 
-        js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+        javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
         WebElement frame2Element = driver.findElement(By.id("frame2"));
-        driver.switchTo().frame(frame2Element);
+        frameMethods.switchToFrame(frame2Element);
 
-        js.executeScript("window.scrollBy(200,200)");
-
+        javascriptMethods.executeScript("window.scrollBy(200,200)");
 
     }
 }

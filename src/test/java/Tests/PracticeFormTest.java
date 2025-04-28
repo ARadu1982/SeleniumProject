@@ -37,6 +37,7 @@ public class PracticeFormTest {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
+
         //declaram un element
         WebElement formElement = driver.findElement(By.xpath("//h5[text()='Forms']"));
         elementsMethods.clickOnElements(formElement);

@@ -1,5 +1,7 @@
 package Tests;
 
+import HelperMethods.ElementsMethods;
+import HelperMethods.JavascripMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +17,8 @@ import java.util.List;
 public class BrowserWindowsTab {
 
     public WebDriver driver;
+    public JavascripMethods javascriptMethods;
+    public ElementsMethods elementsMethods;
 
     @Test
     public void browserWindowMethod() {
@@ -29,19 +33,19 @@ public class BrowserWindowsTab {
         //facem browserul in modul maximize
         driver.manage().window().maximize();
 
+        elementsMethods = new ElementsMethods(driver);
         //facem un scroll
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
-//            js.executeScript("window.scrollBy(0, 400)");
+        javascriptMethods = new JavascripMethods(driver);
+        javascriptMethods.scroll(0,400);
 
         WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        alertFrameWindowElement.click();
+        elementsMethods.clickOnElements(alertFrameWindowElement);
 
         WebElement browserWindowsElement = driver.findElement((By.xpath("//span[text()='Browser Windows']")));
-        browserWindowsElement.click();
+        elementsMethods.clickOnElements(browserWindowsElement);
 
         WebElement tabButtonElement = driver.findElement(By.id("tabButton"));
-        tabButtonElement.click();
+        elementsMethods.clickOnElements(tabButtonElement);
 
         // definim o lista care va contine window tabs
         List<String> tabList = new ArrayList<>(driver.getWindowHandles());

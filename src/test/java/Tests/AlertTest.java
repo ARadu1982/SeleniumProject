@@ -1,6 +1,7 @@
 package Tests;
 import HelperMethods.AlertMethods;
 import HelperMethods.ElementsMethods;
+import HelperMethods.JavascripMethods;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -20,6 +21,8 @@ public class AlertTest {
 
         public AlertMethods alertMethods;
 
+        public JavascripMethods javascriptMethods;
+
     @Test
         public void alertTestMethod() {
 
@@ -37,10 +40,8 @@ public class AlertTest {
             elementsMethods = new ElementsMethods(driver);
             alertMethods = new AlertMethods(driver);
 
-            //facem un scroll
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
-//            js.executeScript("window.scrollBy(0, 400)");
+            javascriptMethods = new JavascripMethods(driver);
+            javascriptMethods.scroll(0,400);
 
             WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
             elementsMethods.clickOnElements(alertFrameWindowElement);
@@ -48,7 +49,7 @@ public class AlertTest {
             WebElement alertElement = driver.findElement((By.xpath("//span[text()='Alerts']")));
             elementsMethods.clickOnElements(alertElement);
 
-            js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+            javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
             // prima alerta
             WebElement alertOkElement = driver.findElement(By.id("alertButton"));
@@ -56,20 +57,15 @@ public class AlertTest {
 
             alertMethods.interactWithAlerts();
 
-            js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
-
+           javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
             // a doua alerta
             WebElement alertDelayElement = driver.findElement(By.id("timerAlertButton"));
             elementsMethods.clickOnElements(alertDelayElement);
 
-//            // definim un wait explicit ca sa astepte dupa alerta
-//            WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-//            wait.until(ExpectedConditions.alertIsPresent());
-
             alertMethods.interactWithDelayAlert();
 
-            js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+            javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
 
             // a treia alerta
@@ -84,7 +80,7 @@ public class AlertTest {
 
             Assert.assertEquals(actualMessage,expectedMessage);
 
-            js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+            javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
             // a patra alerta
             WebElement alertPromptElement = driver.findElement(By.id("promtButton"));
@@ -97,7 +93,6 @@ public class AlertTest {
             System.out.println("Mesajul afisat este: "+actualPromptMessage);
 
             Assert.assertEquals(actualPromptMessage,expectedPromptMessage );
-
 
         }
 
