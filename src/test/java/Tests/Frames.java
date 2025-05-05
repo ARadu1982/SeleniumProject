@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
+import pages.CommonPage;
+import pages.HomePage;
 
 import java.time.Duration;
 
@@ -18,6 +20,8 @@ public class Frames {
     public JavascripMethods javascriptMethods;
     public ElementsMethods elementsMethods;
     public FramesMethods frameMethods;
+    public HomePage homePage;
+    public CommonPage commonPage;
 
     @Test
     public void framesMethod() {
@@ -36,22 +40,26 @@ public class Frames {
 
         elementsMethods = new ElementsMethods(driver);
         frameMethods = new FramesMethods(driver);
+        commonPage = new CommonPage(driver);
+        homePage = new HomePage(driver);
 
         //facem un scroll
         javascriptMethods = new JavascripMethods(driver);
         javascriptMethods.scroll(0,400);
 
-        WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementsMethods.clickOnElements(alertFrameWindowElement);
+//        WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
+//        elementsMethods.clickOnElements(alertFrameWindowElement);
+        homePage.goToDesiredMenu("Alerts, Frame & Windows");
 
-        WebElement frameElement = driver.findElement((By.xpath("//span[text()='Frames']")));
-        elementsMethods.clickOnElements(frameElement);
+//        WebElement frameElement = driver.findElement((By.xpath("//span[text()='Frames']")));
+//        elementsMethods.clickOnElements(frameElement);
+        commonPage.goToDesiredSubMenu("Frames");
 
         WebElement frame1Element = driver.findElement(By.id("frame1"));
         frameMethods.switchToFrame(frame1Element);
 
         WebElement sampleHeadingFrameElement = driver.findElement((By.id("sampleHeading")));
-        System.out.println("Textul din frame este: "+sampleHeadingFrameElement.getText());
+        elementsMethods.displayElementContent(sampleHeadingFrameElement);
 
         // ne intoarcem cu focusul din frame pe pagina principala
         frameMethods.switchToDefaultContent();

@@ -1,12 +1,15 @@
 package Tests;
 
 import HelperMethods.ElementsMethods;
+import HelperMethods.JavascripMethods;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.CommonPage;
+import pages.HomePage;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,6 +20,9 @@ public class PracticeFormTest {
     public WebDriver driver;
 
     public ElementsMethods elementsMethods;
+    public JavascripMethods javascripMethods;
+    public HomePage homePage;
+    public CommonPage commonPage;
 
     @Test
     public void automationMethod() {
@@ -31,19 +37,26 @@ public class PracticeFormTest {
         driver.manage().window().maximize();
 
         elementsMethods = new ElementsMethods(driver);
+        javascripMethods = new JavascripMethods(driver);
+        commonPage = new CommonPage(driver);
+        homePage = new HomePage(driver);
         
 
-        //facem un scroll
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+//        //facem un scroll
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+//
+        javascripMethods.scroll(0,400);
+//
+//        //declaram un element
+//        List<WebElement> formElements = driver.findElements(By.xpath("//h5"));
+//        elementsMethods.selectElementFromListByText(formElements,"Forms");
+        homePage.goToDesiredMenu("Forms");
 
-
-        //declaram un element
-        WebElement formElement = driver.findElement(By.xpath("//h5[text()='Forms']"));
-        elementsMethods.clickOnElements(formElement);
-
-        WebElement practiceFormElement = driver.findElement(By.xpath("//span[text()='Practice Form']"));
-        elementsMethods.clickOnElements(practiceFormElement);
+//        WebElement practiceFormElement = driver.findElement(By.xpath("//span[text()='Practice Form']"));
+//        List<WebElement> subElementList = driver.findElements(By.xpath("//span[@class='text']"));
+//        elementsMethods.selectElementFromListByText(subElementList,"Practice Form");
+        commonPage.goToDesiredSubMenu("Practice Form");
 
         WebElement firstNameElement = driver.findElement(By.id("firstName"));
         String firstNameValue = "Amaritei";
@@ -74,7 +87,7 @@ public class PracticeFormTest {
         genderElement.add(FemaleElement);
         genderElement.add(OtherElement);
 
-        elementsMethods.selectElementFromListByText(genderElement,"Female");
+//        elementsMethods.selectElementFromListByText(genderElement,"Female");
 
 //        WebElement SubjectElement = driver.findElement((By.id("subjectsInput")));
 //        String SubjectValues = "Social Studies";

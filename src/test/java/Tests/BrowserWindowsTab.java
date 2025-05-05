@@ -2,6 +2,7 @@ package Tests;
 
 import HelperMethods.ElementsMethods;
 import HelperMethods.JavascripMethods;
+import HelperMethods.WindowsMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.CommonPage;
+import pages.HomePage;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -19,6 +22,9 @@ public class BrowserWindowsTab {
     public WebDriver driver;
     public JavascripMethods javascriptMethods;
     public ElementsMethods elementsMethods;
+    public WindowsMethods windowsMethods;
+    public HomePage homePage;
+    public CommonPage commonPage;
 
     @Test
     public void browserWindowMethod() {
@@ -34,51 +40,52 @@ public class BrowserWindowsTab {
         driver.manage().window().maximize();
 
         elementsMethods = new ElementsMethods(driver);
+        windowsMethods = new WindowsMethods(driver);
+        commonPage = new CommonPage(driver);
+        homePage = new HomePage(driver);
         //facem un scroll
         javascriptMethods = new JavascripMethods(driver);
-        javascriptMethods.scroll(0,400);
 
-        WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementsMethods.clickOnElements(alertFrameWindowElement);
+//      javascriptMethods.scroll(0,400);
 
-        WebElement browserWindowsElement = driver.findElement((By.xpath("//span[text()='Browser Windows']")));
-        elementsMethods.clickOnElements(browserWindowsElement);
+//      WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
+//      elementsMethods.clickOnElements(alertFrameWindowElement);
+        homePage.goToDesiredMenu("Alerts, Frame & Windows");
+
+
+//        WebElement browserWindowsElement = driver.findElement((By.xpath("//span[text()='Browser Windows']")));
+//        elementsMethods.clickOnElements(browserWindowsElement);
+        commonPage.goToDesiredSubMenu("Browser Windows");
 
         WebElement tabButtonElement = driver.findElement(By.id("tabButton"));
         elementsMethods.clickOnElements(tabButtonElement);
 
-        // definim o lista care va contine window tabs
-        List<String> tabList = new ArrayList<>(driver.getWindowHandles());
-
-        // ne mutam pe noul tab deschis
-        driver.switchTo().window(tabList.get(1));
+        windowsMethods.switchToOpenTab();
 
         WebElement sampleHeadingElement = driver.findElement((By.id("sampleHeading")));
         String sampleHeadingActualText = sampleHeadingElement.getText();
         String sampleHeadingExpectedText = "This is a sample page";
 
-        System.out.println("Textul din new tab este: "+sampleHeadingActualText);
+        elementsMethods.displayElementContent(sampleHeadingElement);
 
         Assert.assertEquals(sampleHeadingActualText,sampleHeadingExpectedText);
-        driver.close();
+        windowsMethods.closeTab();
 
-        //revenim la pagina originala
-        driver.switchTo().window(tabList.get(0));
+        windowsMethods.switchToMainTab();
 
         WebElement windowElement = driver.findElement(By.id("windowButton"));
-        windowElement.click();
+        elementsMethods.clickOnElements(windowElement);
 
         List<String> windowList = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(windowList.get(1));
 
         WebElement newWindowElement = driver.findElement((By.id("sampleHeading")));
-        String newWindowElementText = newWindowElement.getText();
-        System.out.println("Textul din noua pagina deschisa este: "+newWindowElementText);
+        elementsMethods.displayElementContent(newWindowElement);
 
         // inchidem window ul deschis
-        driver.close();
+        windowsMethods.closeWindow();
 
-        // facem switch pe windowul initial
+        // facem switch pe fereastra initiala
         driver.switchTo().window(windowList.get(0));
 
 

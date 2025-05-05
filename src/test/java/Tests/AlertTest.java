@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.CommonPage;
+import pages.HomePage;
 
 import java.time.Duration;
 
@@ -22,6 +24,8 @@ public class AlertTest {
         public AlertMethods alertMethods;
 
         public JavascripMethods javascriptMethods;
+        public HomePage homePage;
+        public CommonPage commonPage;
 
     @Test
         public void alertTestMethod() {
@@ -39,15 +43,19 @@ public class AlertTest {
 
             elementsMethods = new ElementsMethods(driver);
             alertMethods = new AlertMethods(driver);
-
+            commonPage = new CommonPage(driver);
+            homePage = new HomePage(driver);
             javascriptMethods = new JavascripMethods(driver);
-            javascriptMethods.scroll(0,400);
 
-            WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-            elementsMethods.clickOnElements(alertFrameWindowElement);
+//            javascriptMethods.scroll(0,400);
+//            WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
+//            elementsMethods.clickOnElements(alertFrameWindowElement);
+            homePage.goToDesiredMenu("Alerts, Frame & Windows");
 
-            WebElement alertElement = driver.findElement((By.xpath("//span[text()='Alerts']")));
-            elementsMethods.clickOnElements(alertElement);
+
+//            WebElement alertElement = driver.findElement((By.xpath("//span[text()='Alerts']")));
+//            elementsMethods.clickOnElements(alertElement);
+            commonPage.goToDesiredSubMenu("Alerts");
 
             javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 

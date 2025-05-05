@@ -21,6 +21,8 @@ public class Recursivitate {
         //accesam o pagina web
         driver.get("https://demoqa.com/sortable");
 
+//        Tema  - De navigat din meniul principal si apoi din submeniu folosind cele 2 clase
+
         //facem browserul in modul maximize
         driver.manage().window().maximize();
 

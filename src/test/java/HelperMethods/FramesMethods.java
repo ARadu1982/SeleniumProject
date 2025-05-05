@@ -22,4 +22,5 @@ public class FramesMethods {
         //return focus to default page
         driver.switchTo().defaultContent();
     }
+
 }
