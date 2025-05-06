@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.HomePage;
+import pages.PracticeFormPage;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class PracticeFormTest {
     public JavascripMethods javascripMethods;
     public HomePage homePage;
     public CommonPage commonPage;
+    public PracticeFormPage practiceFormPage;
 
     @Test
     public void automationMethod() {
@@ -40,7 +42,7 @@ public class PracticeFormTest {
         javascripMethods = new JavascripMethods(driver);
         commonPage = new CommonPage(driver);
         homePage = new HomePage(driver);
-        
+        practiceFormPage = new PracticeFormPage(driver);
 
 //        //facem un scroll
 //        JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -57,36 +59,53 @@ public class PracticeFormTest {
 //        List<WebElement> subElementList = driver.findElements(By.xpath("//span[@class='text']"));
 //        elementsMethods.selectElementFromListByText(subElementList,"Practice Form");
         commonPage.goToDesiredSubMenu("Practice Form");
+        practiceFormPage.completeFirstRegion("Amaritei","Radu","radu@yahoo.com","Aleea Codrilor","2323232356");
+        practiceFormPage.completeGender("Male");
+//        practiceFormPage.completeSubject("Maths");
 
-        WebElement firstNameElement = driver.findElement(By.id("firstName"));
-        String firstNameValue = "Amaritei";
-        elementsMethods.fillElement(firstNameElement,firstNameValue);
+        List<String> subjects = new ArrayList<>();
+        subjects.add("Maths");
+        subjects.add("English");
+        subjects.add("Social");
+        practiceFormPage.completeSubjectWithList(subjects);
+
+        List<String> hobbies = new ArrayList<>();
+        hobbies.add("Sports");
+        hobbies.add("Music");
+        hobbies.add("Reading");
+        practiceFormPage.completeHobbies(hobbies);
+
+        //Tema - State and Select City
 
 
-        WebElement lastNameElement = driver.findElement(By.id("lastName"));
-        String lastNameValue = "Radu";
-        elementsMethods.fillElement(lastNameElement,lastNameValue);
-
-        WebElement userEmailElement = driver.findElement(By.id("userEmail"));
-        String userEmailValue = "radu@yahoo.com";
-        elementsMethods.fillElement(userEmailElement, userEmailValue);
-
-        WebElement mobileNumberElement = driver.findElement(By.cssSelector("input[placeholder='Mobile Number']"));
-        String mobileNumberValue = "2323232356";
-        elementsMethods.fillElement(mobileNumberElement, mobileNumberValue);
-
-        WebElement pictureElement = driver.findElement(By.id("uploadPicture"));
-        elementsMethods.uploadPicture(pictureElement);
-
-        WebElement MaleElement = driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
-        WebElement FemaleElement = driver.findElement(By.xpath("//label[@for='gender-radio-2']"));
-        WebElement OtherElement = driver.findElement(By.xpath("//label[@for='gender-radio-3']"));
-        List<WebElement> genderElement = new ArrayList<>();
-
-        genderElement.add(MaleElement);
-        genderElement.add(FemaleElement);
-        genderElement.add(OtherElement);
-
+//        WebElement firstNameElement = driver.findElement(By.id("firstName"));
+//        String firstNameValue = "Amaritei";
+//        elementsMethods.fillElement(firstNameElement,firstNameValue);
+//
+//        WebElement lastNameElement = driver.findElement(By.id("lastName"));
+//        String lastNameValue = "Radu";
+//        elementsMethods.fillElement(lastNameElement,lastNameValue);
+//
+//        WebElement userEmailElement = driver.findElement(By.id("userEmail"));
+//        String userEmailValue = "radu@yahoo.com";
+//        elementsMethods.fillElement(userEmailElement, userEmailValue);
+//
+//        WebElement mobileNumberElement = driver.findElement(By.cssSelector("input[placeholder='Mobile Number']"));
+//        String mobileNumberValue = "2323232356";
+//        elementsMethods.fillElement(mobileNumberElement, mobileNumberValue);
+//
+//        WebElement pictureElement = driver.findElement(By.id("uploadPicture"));
+//        elementsMethods.uploadPicture(pictureElement);
+//
+//        WebElement MaleElement = driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
+//        WebElement FemaleElement = driver.findElement(By.xpath("//label[@for='gender-radio-2']"));
+//        WebElement OtherElement = driver.findElement(By.xpath("//label[@for='gender-radio-3']"));
+//        List<WebElement> genderElement = new ArrayList<>();
+//
+//        genderElement.add(MaleElement);
+//        genderElement.add(FemaleElement);
+//        genderElement.add(OtherElement);
+//
 //        elementsMethods.selectElementFromListByText(genderElement,"Female");
 
 //        WebElement SubjectElement = driver.findElement((By.id("subjectsInput")));
