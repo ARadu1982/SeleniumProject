@@ -2,6 +2,7 @@ package Tests;
 
 import HelperMethods.ElementsMethods;
 import HelperMethods.JavascripMethods;
+import ShareData.ShareData;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -16,9 +17,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PracticeFormTest {
-
-    public WebDriver driver;
+public class PracticeFormTest extends ShareData {
 
     public ElementsMethods elementsMethods;
     public JavascripMethods javascripMethods;
@@ -29,39 +28,19 @@ public class PracticeFormTest {
     @Test
     public void automationMethod() {
 
-        // Deschidem un browser de chrome
-        driver = new FirefoxDriver();
-
-        //accesam o pagina web
-        driver.get("https://demoqa.com/");
-
-        //facem browserul in modul maximize
-        driver.manage().window().maximize();
-
         elementsMethods = new ElementsMethods(driver);
         javascripMethods = new JavascripMethods(driver);
         commonPage = new CommonPage(driver);
         homePage = new HomePage(driver);
         practiceFormPage = new PracticeFormPage(driver);
 
-//        //facem un scroll
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
-//
         javascripMethods.scroll(0,400);
-//
-//        //declaram un element
-//        List<WebElement> formElements = driver.findElements(By.xpath("//h5"));
-//        elementsMethods.selectElementFromListByText(formElements,"Forms");
+
         homePage.goToDesiredMenu("Forms");
 
-//        WebElement practiceFormElement = driver.findElement(By.xpath("//span[text()='Practice Form']"));
-//        List<WebElement> subElementList = driver.findElements(By.xpath("//span[@class='text']"));
-//        elementsMethods.selectElementFromListByText(subElementList,"Practice Form");
         commonPage.goToDesiredSubMenu("Practice Form");
         practiceFormPage.completeFirstRegion("Amaritei","Radu","radu@yahoo.com","Aleea Codrilor","2323232356");
         practiceFormPage.completeGender("Male");
-//        practiceFormPage.completeSubject("Maths");
 
         List<String> subjects = new ArrayList<>();
         subjects.add("Maths");
@@ -77,42 +56,11 @@ public class PracticeFormTest {
 
         //Tema - State and Select City
 
+        javascripMethods.scroll(0,400);
+        practiceFormPage.completeStateAndCity("NCR","Delhi"); // aici pica testul
 
-//        WebElement firstNameElement = driver.findElement(By.id("firstName"));
-//        String firstNameValue = "Amaritei";
-//        elementsMethods.fillElement(firstNameElement,firstNameValue);
-//
-//        WebElement lastNameElement = driver.findElement(By.id("lastName"));
-//        String lastNameValue = "Radu";
-//        elementsMethods.fillElement(lastNameElement,lastNameValue);
-//
-//        WebElement userEmailElement = driver.findElement(By.id("userEmail"));
-//        String userEmailValue = "radu@yahoo.com";
-//        elementsMethods.fillElement(userEmailElement, userEmailValue);
-//
-//        WebElement mobileNumberElement = driver.findElement(By.cssSelector("input[placeholder='Mobile Number']"));
-//        String mobileNumberValue = "2323232356";
-//        elementsMethods.fillElement(mobileNumberElement, mobileNumberValue);
-//
-//        WebElement pictureElement = driver.findElement(By.id("uploadPicture"));
-//        elementsMethods.uploadPicture(pictureElement);
-//
-//        WebElement MaleElement = driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
-//        WebElement FemaleElement = driver.findElement(By.xpath("//label[@for='gender-radio-2']"));
-//        WebElement OtherElement = driver.findElement(By.xpath("//label[@for='gender-radio-3']"));
-//        List<WebElement> genderElement = new ArrayList<>();
-//
-//        genderElement.add(MaleElement);
-//        genderElement.add(FemaleElement);
-//        genderElement.add(OtherElement);
-//
-//        elementsMethods.selectElementFromListByText(genderElement,"Female");
+        practiceFormPage.submit();
 
-//        WebElement SubjectElement = driver.findElement((By.id("subjectsInput")));
-//        String SubjectValues = "Social Studies";
-//        SubjectElement.sendKeys(SubjectValues);
-//        SubjectElement.sendKeys(Keys.ENTER);
-//
 //        WebElement StateElement = driver.findElement(By.id("react-select-3-input"));
 //        js.executeScript("arguments[0].click();",StateElement);
 //        StateElement.sendKeys("NCR");

@@ -48,10 +48,10 @@ public class PracticeFormPage {
     @FindBy(id = "currentAddress")
     WebElement addressElement;
 
-    @FindBy(id = "react-select-3-input']")
+    @FindBy(id = "react-select-3-input")
     WebElement stateElement;
 
-    @FindBy(id = "react-select-4-input']")
+    @FindBy(id = "react-select-4-input")
     WebElement cityElement;
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-1']")
@@ -66,6 +66,9 @@ public class PracticeFormPage {
 //    @FindBy(xpath = "//div[@id='subjectsContainer']")
     @FindBy(id = "subjectsInput")
     WebElement subjectElement;
+
+    @FindBy(id = "submit")
+    WebElement submitElement;
 
     public void completeFirstRegion(String firstName,String lastName, String email, String address, String mobileNo){
 
@@ -91,7 +94,7 @@ public class PracticeFormPage {
         }
     }
 
-    public void completeSubject(String subject){ // tema - de transmis o lista de valori
+    public void completeSubject(String subject){
 
         elementsMethods.clickOnElements(subjectElement);
         elementsMethods.fillWithActions(subjectElement, subject);
@@ -110,5 +113,20 @@ public class PracticeFormPage {
         hobbiesElement.add(musicHobbyElement);
 
         elementsMethods.clickMultipleValues(hobbiesElement,hobbies);
+    }
+
+    public void completeStateAndCity(String state, String city){ // tema - de transmis o lista de valori
+
+        elementsMethods.clickOnElements(stateElement);
+//        elementsMethods.waitVisibilityElement(stateElement);
+        elementsMethods.fillWithActions(stateElement, state);
+        elementsMethods.clickOnElements(cityElement);
+//        elementsMethods.waitVisibilityElement(cityElement);
+        elementsMethods.fillWithActions(cityElement,city);
+
+    }
+
+    public void submit(){
+        elementsMethods.clickOnElements(submitElement);
     }
 }

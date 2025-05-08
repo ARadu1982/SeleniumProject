@@ -99,6 +99,13 @@ public class ElementsMethods {
 
     }
 
+    public  void selectFromComboboxElement(WebElement webElement,String value)
+    {
+        js.executeScript("arguments[0].click();",webElement);
+        webElement.sendKeys(value);
+        webElement.sendKeys(Keys.ENTER);
+    }
+
 
 
 
