@@ -16,7 +16,6 @@ public class WindowsMethods {
     public void switchToOpenTab(){
 
         List<String> tabList = new ArrayList<>(driver.getWindowHandles());
-
         // ne mutam pe noul tab deschis
         driver.switchTo().window(tabList.get(1));
     }

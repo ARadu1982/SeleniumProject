@@ -26,9 +26,7 @@ public class ElementsMethods {
     }
 
     public void clickOnElements(WebElement element){
-
             element.click();
-
     }
 
     public void  fillElement(WebElement element, String value){

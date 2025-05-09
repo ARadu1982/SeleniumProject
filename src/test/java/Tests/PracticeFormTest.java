@@ -54,25 +54,12 @@ public class PracticeFormTest extends ShareData {
         hobbies.add("Reading");
         practiceFormPage.completeHobbies(hobbies);
 
-        //Tema - State and Select City
-
         javascripMethods.scroll(0,400);
-        practiceFormPage.completeStateAndCity("NCR","Delhi"); // aici pica testul
+
+        practiceFormPage.completeStateAndCity("NCR","Delhi");
 
         practiceFormPage.submit();
 
-//        WebElement StateElement = driver.findElement(By.id("react-select-3-input"));
-//        js.executeScript("arguments[0].click();",StateElement);
-//        StateElement.sendKeys("NCR");
-//        StateElement.sendKeys(Keys.ENTER);
-//
-//        WebElement CityElement = driver.findElement(By.id("react-select-4-input"));
-//        js.executeScript("arguments[0].click();",CityElement);
-//        CityElement.sendKeys("Delhi");
-//        CityElement.sendKeys(Keys.ENTER);
-//
-//        WebElement submitElement = driver.findElement(By.id("submit"));
-//        js.executeScript("arguments[0].click();",submitElement);
 
 
     }

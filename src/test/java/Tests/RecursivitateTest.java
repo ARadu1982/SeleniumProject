@@ -1,30 +1,28 @@
 package Tests;
 
+import ShareData.ShareData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
+import pages.CommonPage;
+import pages.HomePage;
 
-import javax.swing.*;
 import java.util.List;
 
-public class Recursivitate {
-    public WebDriver driver;
+public class RecursivitateTest extends ShareData {
+
+    public HomePage homePage;
+    public CommonPage commonPage;
 
     @Test
     public void parcurgereLista(){
 
-        driver = new ChromeDriver();
+        homePage = new HomePage(driver);
+        commonPage = new CommonPage(driver);
 
-        //accesam o pagina web
-        driver.get("https://demoqa.com/sortable");
-
-//        Tema  - De navigat din meniul principal si apoi din submeniu folosind cele 2 clase
-
-        //facem browserul in modul maximize
-        driver.manage().window().maximize();
+        homePage.goToDesiredMenu("Interactions");
+        commonPage.goToDesiredSubMenu("Sortable");
 
         Actions actions = new Actions(driver);
 

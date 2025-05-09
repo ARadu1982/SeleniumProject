@@ -10,16 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PracticeFormPage {
+public class PracticeFormPage extends CommonPage{
 
-    WebDriver driver;
-    ElementsMethods elementsMethods;
 
-    public PracticeFormPage(WebDriver driver) {
-        this.driver = driver;
-        this.elementsMethods = new ElementsMethods(driver);
-        PageFactory.initElements(driver, this);
-    }
 
     @FindBy(id="firstName")
     WebElement firstNameElement;
@@ -70,7 +63,11 @@ public class PracticeFormPage {
     @FindBy(id = "submit")
     WebElement submitElement;
 
-    public void completeFirstRegion(String firstName,String lastName, String email, String address, String mobileNo){
+    public PracticeFormPage(WebDriver driver) {
+        super(driver);
+    }
+
+    public void completeFirstRegion(String firstName, String lastName, String email, String address, String mobileNo){
 
         elementsMethods.fillElement(firstNameElement, firstName);
         elementsMethods.fillElement(lastNameElement, lastName);
@@ -117,16 +114,19 @@ public class PracticeFormPage {
 
     public void completeStateAndCity(String state, String city){ // tema - de transmis o lista de valori
 
-        elementsMethods.clickOnElements(stateElement);
+        javascriptMethods.forceClick(stateElement);
+//        elementsMethods.clickOnElements(stateElement);
 //        elementsMethods.waitVisibilityElement(stateElement);
         elementsMethods.fillWithActions(stateElement, state);
-        elementsMethods.clickOnElements(cityElement);
+        javascriptMethods.forceClick(cityElement);
+
+//        elementsMethods.clickOnElements(cityElement);
 //        elementsMethods.waitVisibilityElement(cityElement);
         elementsMethods.fillWithActions(cityElement,city);
 
     }
 
     public void submit(){
-        elementsMethods.clickOnElements(submitElement);
+        javascriptMethods.forceClick(submitElement);
     }
 }

@@ -1,9 +1,9 @@
 package pages;
 
-import HelperMethods.ElementsMethods;
-import HelperMethods.JavascripMethods;
+import HelperMethods.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -13,12 +13,21 @@ public class CommonPage {
 
     WebDriver driver;
     ElementsMethods elementsMethods;
-    JavascripMethods javascripMethods;
+    JavascripMethods javascriptMethods;
+    AlertMethods alertMethods;
+    WindowsMethods windowsMethods;
+    Actions actions;
+    FramesMethods frameMethods;
 
     public CommonPage(WebDriver driver) {
         this.driver = driver;
         this.elementsMethods = new ElementsMethods(driver);
-        this.javascripMethods = new JavascripMethods(driver);
+        this.javascriptMethods = new JavascripMethods(driver);
+        this.alertMethods = new AlertMethods(driver);
+        this.windowsMethods = new WindowsMethods(driver);
+        this.actions = new Actions(driver);
+        this.frameMethods = new FramesMethods(driver);
+
         PageFactory.initElements(driver, this);
     }
 
@@ -29,7 +38,7 @@ public class CommonPage {
     // Se creeaza metode specifice pentru sub-pagina
 
     public void goToDesiredSubMenu(String submenu){
-        javascripMethods.scroll(0,400);
+        javascriptMethods.scroll(0,400);
         elementsMethods.selectElementFromListByText(elements,submenu);
 
     }
