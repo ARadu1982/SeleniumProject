@@ -19,9 +19,6 @@ import java.time.Duration;
 
 public class AlertTest extends ShareData {
 
-        public ElementsMethods elementsMethods;
-        public AlertMethods alertMethods;
-        public JavascripMethods javascriptMethods;
         public HomePage homePage;
         public CommonPage commonPage;
         public AlertsPage alertsPage;
@@ -29,18 +26,15 @@ public class AlertTest extends ShareData {
     @Test
         public void alertTestMethod() {
 
-            elementsMethods = new ElementsMethods(driver);
-            alertMethods = new AlertMethods(driver);
-            commonPage = new CommonPage(driver);
-            homePage = new HomePage(driver);
-            alertsPage = new AlertsPage(driver);
-            javascriptMethods = new JavascripMethods(driver);
+            commonPage = new CommonPage(getDriver());
+            homePage = new HomePage(getDriver());
+            alertsPage = new AlertsPage(getDriver());
 
             homePage.goToDesiredMenu("Alerts, Frame & Windows");
 
             commonPage.goToDesiredSubMenu("Alerts");
 
-            javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+//            javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
             // prima alerta
             alertsPage.alertOk();
@@ -55,7 +49,7 @@ public class AlertTest extends ShareData {
              String expectedMessage = "You selected Cancel";
             alertsPage.confirmResultAssert(expectedMessage);
 
-            javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+//            javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
             // a patra alerta
              alertsPage.alertPrompt();

@@ -21,18 +21,14 @@ public class WebTableTest extends ShareData {
 
      HomePage homePage;
      CommonPage commonPage;
-     ElementsMethods elementsMethods;
-     JavascripMethods javascripMethods;
      WebTablePage webTablePage;
 
     @Test
     public void automationMethod(){
 
-        elementsMethods = new ElementsMethods(driver);
-        javascripMethods = new JavascripMethods(driver);
-        commonPage = new CommonPage(driver);
-        homePage = new HomePage(driver);
-        webTablePage = new WebTablePage(driver);
+        commonPage = new CommonPage(getDriver());
+        homePage = new HomePage(getDriver());
+        webTablePage = new WebTablePage(getDriver());
 
 
         homePage.goToDesiredMenu("Elements");

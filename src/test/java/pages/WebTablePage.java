@@ -12,34 +12,31 @@ import java.util.List;
 public class WebTablePage extends CommonPage{
 
     @FindBy(xpath = "//div[@class='rt-tbody']/div/div[@class='rt-tr -even' or @class='rt-tr -odd']")
-    List<WebElement> tabelElements;
+    private List<WebElement> tabelElements;
 
     @FindBy(id="addNewRecordButton")
-    WebElement addNewButton;
+    private WebElement addNewButton;
 
     @FindBy(id = "firstName")
-    WebElement firstNameElement;
+    private WebElement firstNameElement;
 
     @FindBy(id = "lastName")
-    WebElement lastNameElement;
+    private WebElement lastNameElement;
 
     @FindBy(id = "userEmail")
-    WebElement userEmailElement;
+    private WebElement userEmailElement;
 
     @FindBy(id = "age")
-    WebElement ageElement;
+    private WebElement ageElement;
 
     @FindBy(id = "salary")
-    WebElement salaryElement;
+    private WebElement salaryElement;
 
     @FindBy(id = "department")
-    WebElement departmentElement;
+    private WebElement departmentElement;
 
     @FindBy(id = "submit")
-    WebElement submitElement;
-
-
-
+    private WebElement submitElement;
 
     public WebTablePage(WebDriver driver) {
         super(driver);

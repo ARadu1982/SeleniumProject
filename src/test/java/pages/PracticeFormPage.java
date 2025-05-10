@@ -12,56 +12,54 @@ import java.util.List;
 
 public class PracticeFormPage extends CommonPage{
 
-
-
     @FindBy(id="firstName")
-    WebElement firstNameElement;
+    private WebElement firstNameElement;
 
     @FindBy(id="lastName")
-    WebElement lastNameElement;
+    private WebElement lastNameElement;
 
     @FindBy(id="userEmail")
-    WebElement userEmailElement;
+    private WebElement userEmailElement;
 
     @FindBy(css = "input[placeholder='Mobile Number']")
-    WebElement mobileNumberElement;
+    private WebElement mobileNumberElement;
 
     @FindBy(id = "uploadPicture")
-    WebElement pictureElement;
+    private WebElement pictureElement;
 
     @FindBy(xpath = "//label[@for='gender-radio-1']")
-    WebElement maleGenderElement;
+    private WebElement maleGenderElement;
 
     @FindBy(xpath = "//label[@for='gender-radio-2']")
-    WebElement femaleGenderElement;
+    private WebElement femaleGenderElement;
 
     @FindBy(xpath = "//label[@for='gender-radio-3']")
-    WebElement otherGenderElement;
+    private WebElement otherGenderElement;
 
     @FindBy(id = "currentAddress")
-    WebElement addressElement;
+    private WebElement addressElement;
 
     @FindBy(id = "react-select-3-input")
-    WebElement stateElement;
+    private WebElement stateElement;
 
     @FindBy(id = "react-select-4-input")
-    WebElement cityElement;
+    private WebElement cityElement;
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-1']")
-    WebElement sportHobbyElement;
+    private WebElement sportHobbyElement;
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-2']")
-    WebElement readingHobbyElement;
+    private WebElement readingHobbyElement;
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-3']")
-    WebElement musicHobbyElement;
+    private WebElement musicHobbyElement;
 
 //    @FindBy(xpath = "//div[@id='subjectsContainer']")
     @FindBy(id = "subjectsInput")
-    WebElement subjectElement;
+    private WebElement subjectElement;
 
     @FindBy(id = "submit")
-    WebElement submitElement;
+    private WebElement submitElement;
 
     public PracticeFormPage(WebDriver driver) {
         super(driver);
@@ -109,7 +107,9 @@ public class PracticeFormPage extends CommonPage{
         hobbiesElement.add(readingHobbyElement);
         hobbiesElement.add(musicHobbyElement);
 
+        javascriptMethods.scroll(0,400);
         elementsMethods.clickMultipleValues(hobbiesElement,hobbies);
+        javascriptMethods.scroll(0,400);
     }
 
     public void completeStateAndCity(String state, String city){ // tema - de transmis o lista de valori

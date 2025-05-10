@@ -11,25 +11,25 @@ import org.testng.Assert;
 public class AlertsPage extends CommonPage{
 
     @FindBy(id="alertButton")
-    WebElement alertOkElement;
+    private WebElement alertOkElement;
 
     @FindBy(id = "timerAlertButton")
-    WebElement alertDelayElement;
+    private WebElement alertDelayElement;
 
     @FindBy(id = "confirmButton")
-    WebElement alertConfirmElement;
+    private WebElement alertConfirmElement;
 
     @FindBy(id = "promtButton")
-    WebElement alertPromptElement;
+    private WebElement alertPromptElement;
 
     @FindBy(id = "confirmResult")
-    WebElement confirmResultElement;
+    private WebElement confirmResultElement;
 
     @FindBy(id = "promtButton")
-    WebElement promtButtonElement;
+    private WebElement promtButtonElement;
 
     @FindBy(id = "promptResult")
-    WebElement promptResultElement;
+    private WebElement promptResultElement;
 
     public AlertsPage(WebDriver driver) {
         super(driver);
@@ -60,6 +60,8 @@ public class AlertsPage extends CommonPage{
         System.out.println("Mesajul afisat este: "+actualMessage);
 
         Assert.assertEquals(actualMessage,expectedMessage);
+        javascriptMethods.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+
     }
 
     public void alertPrompt(){

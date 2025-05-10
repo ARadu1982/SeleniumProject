@@ -10,27 +10,22 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class HomePage {
+public class HomePage extends CommonPage{
 
-    WebDriver driver;
-    ElementsMethods elementsMethods;
-    JavascripMethods javascripMethods;
-
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-        this.elementsMethods = new ElementsMethods(driver);
-        this.javascripMethods = new JavascripMethods(driver);
-        PageFactory.initElements(driver, this);
-    }
 
     // Identificam Web elementele specifice pentru aceasta pagina
     @FindBy(xpath = "//h5")
     List<WebElement> elements;
 
+    public HomePage(WebDriver driver) {
+        super(driver);
+    }
+
     // Se creeaza metode specifice pentru pagina
 
     public void goToDesiredMenu(String menu){
-        javascripMethods.scroll(0,400);
+        // Se face scroll inainte
+        javascriptMethods.scroll(0,400);
         elementsMethods.selectElementFromListByText(elements,menu);
 
     }

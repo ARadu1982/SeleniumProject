@@ -19,8 +19,6 @@ import java.util.List;
 
 public class PracticeFormTest extends ShareData {
 
-    public ElementsMethods elementsMethods;
-    public JavascripMethods javascripMethods;
     public HomePage homePage;
     public CommonPage commonPage;
     public PracticeFormPage practiceFormPage;
@@ -28,17 +26,15 @@ public class PracticeFormTest extends ShareData {
     @Test
     public void automationMethod() {
 
-        elementsMethods = new ElementsMethods(driver);
-        javascripMethods = new JavascripMethods(driver);
-        commonPage = new CommonPage(driver);
-        homePage = new HomePage(driver);
-        practiceFormPage = new PracticeFormPage(driver);
-
-        javascripMethods.scroll(0,400);
+        commonPage = new CommonPage(getDriver());
+        homePage = new HomePage(getDriver());
+        practiceFormPage = new PracticeFormPage(getDriver());
 
         homePage.goToDesiredMenu("Forms");
-
         commonPage.goToDesiredSubMenu("Practice Form");
+
+
+
         practiceFormPage.completeFirstRegion("Amaritei","Radu","radu@yahoo.com","Aleea Codrilor","2323232356");
         practiceFormPage.completeGender("Male");
 
@@ -53,14 +49,8 @@ public class PracticeFormTest extends ShareData {
         hobbies.add("Music");
         hobbies.add("Reading");
         practiceFormPage.completeHobbies(hobbies);
-
-        javascripMethods.scroll(0,400);
-
         practiceFormPage.completeStateAndCity("NCR","Delhi");
-
         practiceFormPage.submit();
-
-
 
     }
 }

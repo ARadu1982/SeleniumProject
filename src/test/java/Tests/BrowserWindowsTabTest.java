@@ -17,9 +17,6 @@ import java.util.List;
 
 public class BrowserWindowsTabTest extends ShareData {
 
-    JavascripMethods javascriptMethods;
-    ElementsMethods elementsMethods;
-    WindowsMethods windowsMethods;
     HomePage homePage;
     CommonPage commonPage;
     BrowserWebPage browserWebPage;
@@ -27,14 +24,9 @@ public class BrowserWindowsTabTest extends ShareData {
     @Test
     public void browserWindowMethod() {
 
-        elementsMethods = new ElementsMethods(driver);
-        windowsMethods = new WindowsMethods(driver);
-        commonPage = new CommonPage(driver);
-        homePage = new HomePage(driver);
-        browserWebPage = new BrowserWebPage(driver);
-
-        //facem un scroll
-        javascriptMethods = new JavascripMethods(driver);
+        commonPage = new CommonPage(getDriver());
+        homePage = new HomePage(getDriver());
+        browserWebPage = new BrowserWebPage(getDriver());
 
         homePage.goToDesiredMenu("Alerts, Frame & Windows");
 

@@ -9,16 +9,16 @@ import org.testng.Assert;
 public class BrowserWebPage extends CommonPage{
 
     @FindBy(id = "tabButton")
-    WebElement tabButtonElement;
+    private WebElement tabButtonElement;
 
     @FindBy(id = "sampleHeading")
-    WebElement sampleHeadingElementFromNewTab;
+    private WebElement sampleHeadingElementFromNewTab;
 
     @FindBy(id = "windowButton")
-    WebElement windowElement;
+    private WebElement windowElement;
 
     @FindBy(id = "sampleHeading")
-    WebElement sampleHeadingFromNewWindowElement;
+    private WebElement sampleHeadingFromNewWindowElement;
 
     public BrowserWebPage(WebDriver driver) {
         super(driver);

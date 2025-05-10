@@ -9,13 +9,13 @@ import org.openqa.selenium.support.FindBy;
 public class FramesPage extends CommonPage {
 
     @FindBy(id = "frame1")
-    WebElement frame1Element;
+    private WebElement frame1Element;
 
     @FindBy(id = "frame2")
-    WebElement frame2Element;
+    private WebElement frame2Element;
 
     @FindBy(id = "sampleHeading")
-    WebElement sampleHeadingFrameElement;
+    private WebElement sampleHeadingFrameElement;
 
     public FramesPage(WebDriver driver) {
         super(driver);

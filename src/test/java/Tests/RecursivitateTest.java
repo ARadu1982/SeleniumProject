@@ -18,15 +18,15 @@ public class RecursivitateTest extends ShareData {
     @Test
     public void parcurgereLista(){
 
-        homePage = new HomePage(driver);
-        commonPage = new CommonPage(driver);
+        homePage = new HomePage(getDriver());
+        commonPage = new CommonPage(getDriver());
 
         homePage.goToDesiredMenu("Interactions");
         commonPage.goToDesiredSubMenu("Sortable");
 
-        Actions actions = new Actions(driver);
+        Actions actions = new Actions(getDriver());
 
-        List<WebElement> list = driver.findElements(By.xpath("//div[@id='demo-tabpane-list']//div[@class='list-group-item list-group-item-action']"));
+        List<WebElement> list = getDriver().findElements(By.xpath("//div[@id='demo-tabpane-list']//div[@class='list-group-item list-group-item-action']"));
 
         for(int i=0;i<list.size()-1;i++){
 

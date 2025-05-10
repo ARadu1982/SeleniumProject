@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class ShareData {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
     @BeforeMethod
     public void prepareBrowser(){
@@ -26,10 +26,16 @@ public class ShareData {
         driver.manage().window().maximize();
     }
 
+    public WebDriver getDriver() {
+        return driver;
+    }
+
     @AfterMethod
     public void clearBrowser(){
 
         driver.quit();
     }
+
+
 
 }
