@@ -1,5 +1,7 @@
 package ShareData;
 
+import configFile.ConfigFile;
+import configFile.configNode.ConfigurationNode;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
@@ -14,10 +16,12 @@ public class ShareData {
     @BeforeMethod
     public void prepareBrowser(){
 
+        ConfigurationNode configurationNode = ConfigFile.createConfigNode(ConfigurationNode.class);
+
         // Deschidem un browser de chrome
         driver = new FirefoxDriver();
         //accesam o pagina web
-        driver.get("https://demoqa.com/");
+        driver.get(configurationNode.driverConfigNode.url);
 
         // definim un wait implicit pentru un interval maxim de timp
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
