@@ -5,6 +5,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
+// Sesiunea 18
 public class ConfigFile {
 
     // facem o metoda generica care sa  deserializeze un xml file is sa returneze o bucata pe care o doresc
