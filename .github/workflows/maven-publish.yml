@@ -32,5 +32,5 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Run automation suite
-      run: mvn clean install -DCICD=true -Dbrowser=src/suites/${{ github.event.inputs.browser }} -DsuiteXmlFile=src/suites/${{ github.event.inputs.suite }} -PCustomSuite
+      run: mvn clean install -DCICD=true -Dbrowser=${{ github.event.inputs.browser }} -DsuiteXmlFile=src/suites/${{ github.event.inputs.suite }} -PCustomSuite
       

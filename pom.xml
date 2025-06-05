@@ -90,7 +90,7 @@
                         </suiteXmlFiles>
                         <systemPropertyVariables>
                           <browser>chrome</browser>
-                            <CICD>false</CICD>
+                            <CICD>true</CICD>
                         </systemPropertyVariables>
                     </configuration>
                 </plugin>
